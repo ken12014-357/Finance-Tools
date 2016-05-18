@@ -2,6 +2,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
+/**
  * Created by Josue on 4/22/2016.
  */
 public abstract class Engulfing {
@@ -11,6 +12,8 @@ public abstract class Engulfing {
     private long bearishCount = 0;
     public boolean allowAppendText = false;
     private TextManipulation textManipulation = new TextManipulation();
+    
+    
 
     Engulfing(ArrayList<String> list) {
         if (list.get(0).split(",").length >= 5) {
@@ -59,7 +62,7 @@ public abstract class Engulfing {
      * @return Bullish Engulfing
      */
     private boolean isBullish(double O1, double C1, double O2, double C2, double H1, double L1, double H2, double L2) {
-        return ((O1 >= C1) && (O2 <= C2) && (O2 <= C1) && (C2 >= O1) && (L1 >= L2) && (H2 >= H1));
+        return ((O1 >= C1) && (O2 <= C2) && (O2 <= C1) && (C2 >= O1) && (L1 >= L2) && (H2 >= H1) && (O1-C1/H1-L1 >=1/2) && (O2-C2/H2-L2 >=1/2));
     }
 
     /**
@@ -70,7 +73,7 @@ public abstract class Engulfing {
      * @return Bearish Engulfing
      */
     private static boolean isBearish(double O1, double C1, double O2, double C2, double H1, double L1, double H2, double L2) {
-        return ((C1 <= O2) && (O1 >= C2) && (O1 <= C1) && (O2 >= C2) && (L1 >= L2) && (H2 >= H1));
+        return ((C1 <= O2) && (O1 >= C2) && (O1 <= C1) && (O2 >= C2) && (L1 >= L2) && (H2 >= H1) && (H2-L2 > 0.02*O2) && (H1-L1 > 0.02*01));
     }
 
     /**
